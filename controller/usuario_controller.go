@@ -24,16 +24,16 @@ func (u *UsuariosController) GetUsuario(ctx echo.Context) error {
 	}
 	return ctx.JSON(http.StatusOK, usuarios)
 }
-func (u *UsuariosController) CreateUsuarios(ctx echo.Context) error {
+func (u *UsuariosController) CreateUsuario(ctx echo.Context) error {
 	var usuario model.Usuarios
 	err := ctx.Bind(&usuario)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, err)
+		return ctx.JSON(http.StatusBadRequest, err)
 	}
 
 	insertedUsuario, err := u.UsuarioUsecase.CreateUsuarios(usuario)
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, err)
+		return ctx.JSON(http.StatusInternalServerError, err)
 	}
 	return ctx.JSON(http.StatusCreated, insertedUsuario)
 }

@@ -27,7 +27,7 @@ func main() {
 	// Definição de rotas
 	server.GET("/filmes", filmeController.GetFilmes)
 	server.GET("/usuarios", UsuariosController.GetUsuario)
-
+	server.POST("/criarusuarios", UsuariosController.CreateUsuario)
 	// Inicia o servidor
 	server.Logger.Fatal(server.Start(":8080"))
 }
